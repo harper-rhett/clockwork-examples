@@ -34,7 +34,7 @@ internal class PolygonExample : Game
 	}
 }
 
-internal class CustomPolygon : Polygon
+internal class CustomPolygon : PolygonShape
 {
 	// General
 	private int index;

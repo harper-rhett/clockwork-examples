@@ -36,7 +36,7 @@ internal class OrbitsExample : Game
 	}
 }
 
-internal class CelestialBody : Polygon
+internal class CelestialBody : PolygonShape
 {
 	private const int fontSize = 20;
 	private Vector2 textOffset;
