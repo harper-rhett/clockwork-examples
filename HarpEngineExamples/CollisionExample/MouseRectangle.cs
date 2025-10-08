@@ -17,7 +17,7 @@ internal class MouseRectangle : RectangleShape
 	{
 		Transform.WorldPosition = Mouse.GamePosition;
 		CheckCollisions();
-		Color = isColliding ? Colors.Red : Colors.Blue;
+		Color = isColliding ? Colors.Orange : Colors.Blue;
 	}
 
 	private void CheckCollisions()
