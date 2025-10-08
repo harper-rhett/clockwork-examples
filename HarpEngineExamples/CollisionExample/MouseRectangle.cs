@@ -25,6 +25,6 @@ internal class MouseRectangle : RectangleShape
 		isColliding = false;
 
 		foreach (RectangleShape rectangleShape in collisionScene.Rectangles)
-			if (CollidesWith(rectangleShape)) isColliding = true;
+			if (rectangleShape.CollidesWithRectangle(this)) isColliding = true;
 	}
 }
