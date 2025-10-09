@@ -21,7 +21,7 @@ internal class CollisionExample : Game
 
 internal class CollisionScene : Scene
 {
-	public RectangleShape[] Rectangles = new RectangleShape[3];
+	public ICollidesWithRectangle[] Colliders = new ICollidesWithRectangle[3];
 	private const float MinimumSize = 10;
 	private const float MaximumSize = 20;
 
@@ -29,7 +29,7 @@ internal class CollisionScene : Scene
 	{
 		new MouseRectangle(this);
 
-		for (int rectangleIndex = 0; rectangleIndex < Rectangles.Length; rectangleIndex++)
+		for (int rectangleIndex = 0; rectangleIndex < Colliders.Length; rectangleIndex++)
 		{
 			int width = (int)Generate.Float(MinimumSize, MaximumSize);
 			int height = (int)Generate.Float(MinimumSize, MaximumSize);
@@ -37,7 +37,7 @@ internal class CollisionScene : Scene
 			float x = Generate.Float(0, Engine.GameWidth - width);
 			float y = Generate.Float(0, Engine.GameHeight - height);
 			rectangleShape.Transform.WorldPosition = new(x, y);
-			Rectangles[rectangleIndex] = rectangleShape;
+			Colliders[rectangleIndex] = rectangleShape;
 		}
 	}
 }
