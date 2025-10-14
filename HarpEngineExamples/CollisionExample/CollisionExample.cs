@@ -29,8 +29,8 @@ internal class CollisionExample : Game
 internal class CollisionScene : Scene
 {
 	public ICollidesWithRectangle[] Colliders = new ICollidesWithRectangle[25];
-	private const float MinimumSize = 25;
-	private const float MaximumSize = 50;
+	private const int MinimumSize = 25;
+	private const int MaximumSize = 50;
 
 	public CollisionScene()
 	{
@@ -45,11 +45,11 @@ internal class CollisionScene : Scene
 
 	private void AddRectangle(int colliderIndex)
 	{
-		int width = (int)Generate.Float(MinimumSize, MaximumSize);
-		int height = (int)Generate.Float(MinimumSize, MaximumSize);
+		int width = Generate.Integer(MinimumSize, MaximumSize);
+		int height = Generate.Integer(MinimumSize, MaximumSize);
 		RectangleShape rectangleShape = new RectangleShape(this, width, height, Colors.Green);
-		float x = Generate.Float(0, Engine.GameWidth - width);
-		float y = Generate.Float(0, Engine.GameHeight - height);
+		int x = Generate.Integer(0, Engine.GameWidth - width);
+		int y = Generate.Integer(0, Engine.GameHeight - height);
 		rectangleShape.Transform.WorldPosition = new(x, y);
 		Colliders[colliderIndex] = rectangleShape;
 	}
@@ -58,8 +58,8 @@ internal class CollisionScene : Scene
 	{
 		float radius = Generate.Float(MinimumSize / 2f, MaximumSize / 2f);
 		CircleShape circleShape = new CircleShape(this, radius, Colors.Green);
-		float x = Generate.Float(Engine.GameWidth);
-		float y = Generate.Float(Engine.GameHeight);
+		float x = Generate.Integer(Engine.GameWidth);
+		float y = Generate.Integer(Engine.GameHeight);
 		circleShape.Transform.WorldPosition = new(x, y);
 		Colliders[colliderIndex] = circleShape;
 	}
