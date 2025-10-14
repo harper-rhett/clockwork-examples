@@ -2,20 +2,23 @@
 using HarpEngine.Graphics;
 using HarpEngine.Input;
 using HarpEngine.Shapes;
+using System.Numerics;
 
 internal class MouseRectangle : RectangleShape
 {
 	private CollisionScene collisionScene;
 	private bool isColliding;
+	private const int size = 25;
+	private const int halfSize = size / 2;
 
-	public MouseRectangle(CollisionScene collisionScene) : base(collisionScene, 20, 10, Colors.Blue)
+	public MouseRectangle(CollisionScene collisionScene) : base(collisionScene, size, size, Colors.Blue)
 	{
 		this.collisionScene = collisionScene;
 	}
 
 	public override void Update()
 	{
-		Transform.WorldPosition = Mouse.GamePosition;
+		Transform.WorldPosition = Mouse.GamePosition - Vector2.One * halfSize;
 		CheckCollisions();
 		Color = isColliding ? Colors.Orange : Colors.Blue;
 	}
@@ -24,7 +27,7 @@ internal class MouseRectangle : RectangleShape
 	{
 		isColliding = false;
 
-		foreach (RectangleShape rectangleShape in collisionScene.Colliders)
-			if (rectangleShape.CollidesWithRectangle(this)) isColliding = true;
+		foreach (ICollidesWithRectangle collider in collisionScene.Colliders)
+			if (collider.CollidesWithRectangle(this)) isColliding = true;
 	}
 }

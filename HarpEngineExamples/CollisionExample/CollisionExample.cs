@@ -3,10 +3,17 @@ using HarpEngine.Graphics;
 using HarpEngine.Input;
 using HarpEngine.Shapes;
 using HarpEngine.Utilities;
+using HarpEngine.Windowing;
 
 internal class CollisionExample : Game
 {
 	private CollisionScene collisionScene = new();
+
+	public CollisionExample()
+	{
+		Window.SetRendererUnclipped(Colors.Gray);
+		Window.SetResizable(true);
+	}
 
 	public override void Update()
 	{
@@ -21,23 +28,39 @@ internal class CollisionExample : Game
 
 internal class CollisionScene : Scene
 {
-	public ICollidesWithRectangle[] Colliders = new ICollidesWithRectangle[3];
-	private const float MinimumSize = 10;
-	private const float MaximumSize = 20;
+	public ICollidesWithRectangle[] Colliders = new ICollidesWithRectangle[25];
+	private const float MinimumSize = 25;
+	private const float MaximumSize = 50;
 
 	public CollisionScene()
 	{
 		new MouseRectangle(this);
 
-		for (int rectangleIndex = 0; rectangleIndex < Colliders.Length; rectangleIndex++)
+		for (int colliderIndex = 0; colliderIndex < Colliders.Length; colliderIndex++)
 		{
-			int width = (int)Generate.Float(MinimumSize, MaximumSize);
-			int height = (int)Generate.Float(MinimumSize, MaximumSize);
-			RectangleShape rectangleShape = new RectangleShape(this, width, height, Colors.Green);
-			float x = Generate.Float(0, Engine.GameWidth - width);
-			float y = Generate.Float(0, Engine.GameHeight - height);
-			rectangleShape.Transform.WorldPosition = new(x, y);
-			Colliders[rectangleIndex] = rectangleShape;
+			if (colliderIndex % 2 == 0) AddRectangle(colliderIndex);
+			else AddCircle(colliderIndex);
 		}
+	}
+
+	private void AddRectangle(int colliderIndex)
+	{
+		int width = (int)Generate.Float(MinimumSize, MaximumSize);
+		int height = (int)Generate.Float(MinimumSize, MaximumSize);
+		RectangleShape rectangleShape = new RectangleShape(this, width, height, Colors.Green);
+		float x = Generate.Float(0, Engine.GameWidth - width);
+		float y = Generate.Float(0, Engine.GameHeight - height);
+		rectangleShape.Transform.WorldPosition = new(x, y);
+		Colliders[colliderIndex] = rectangleShape;
+	}
+
+	private void AddCircle(int colliderIndex)
+	{
+		float radius = Generate.Float(MinimumSize / 2f, MaximumSize / 2f);
+		CircleShape circleShape = new CircleShape(this, radius, Colors.Green);
+		float x = Generate.Float(Engine.GameWidth);
+		float y = Generate.Float(Engine.GameHeight);
+		circleShape.Transform.WorldPosition = new(x, y);
+		Colliders[colliderIndex] = circleShape;
 	}
 }

@@ -3,8 +3,8 @@
 EngineSettings settings = new()
 {
 	WindowName = "Collision Example",
-	GameWidth = 128,
-	GameHeight = 128
+	GameWidth = 500,
+	GameHeight = 500
 };
 Engine.Initialize(settings);
 CollisionExample collisionExample = new();
