@@ -6,6 +6,7 @@ internal class RectangleCollider : RectangleShape, ICollider
 {
 	private CollisionScene collisionScene;
 	private bool isSelected;
+	private Vector2 offset;
 	public bool IsSelected
 	{
 		set
@@ -16,31 +17,41 @@ internal class RectangleCollider : RectangleShape, ICollider
 	}
 	public Vector2 CenterPosition
 	{
+		get
+		{
+			return Transform.WorldPosition - offset;
+		}
 		set
 		{
-			Transform.WorldPosition = value - new Vector2(Width / 2f, Height / 2f);
+			Transform.WorldPosition = value + offset;
 		}
 	}
+	public bool IsCollidedWith { get; set; }
 
 	public RectangleCollider(CollisionScene collisionScene, int width, int height) : base(collisionScene, width, height, Colors.Blue)
 	{
 		this.collisionScene = collisionScene;
+		offset = new Vector2(-Width / 2f, -Height / 2f);
+	}
+
+	public override void Update()
+	{
+		Color = IsCollidedWith ? Colors.SkyBlue : Colors.Blue;
 	}
 
 	public bool IsColliding(out ICollider otherCollider)
 	{
 		otherCollider = null;
+		bool isCollision = false;
 		foreach (ICollider collider in collisionScene.Colliders)
 		{
 			if (collider == this) continue;
-			if (collider.CollidesWithRectangle(this))
-			{
-				otherCollider = collider;
-				Color = Colors.Orange;
-				return true;
-			}
+			bool doesCollide = collider.CollidesWithRectangle(this);
+			collider.IsCollidedWith = doesCollide;
+			isCollision = isCollision || doesCollide;
+			if (doesCollide) otherCollider = collider;
 		}
-		Color = Colors.Green;
-		return false;
+		Color = isCollision ? Colors.Green : Colors.Lime;
+		return isCollision;
 	}
 }
