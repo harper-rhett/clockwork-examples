@@ -1,5 +1,6 @@
 ﻿using HarpEngine;
 using HarpEngine.Utilities;
+using System.Numerics;
 
 internal class CollisionScene : Scene
 {
@@ -11,8 +12,10 @@ internal class CollisionScene : Scene
 	{
 		for (int colliderIndex = 0; colliderIndex < Colliders.Length; colliderIndex++)
 		{
-			if (colliderIndex % 2 == 0) AddRectangle(colliderIndex);
-			else AddCircle(colliderIndex);
+			int modulo = colliderIndex % 3;
+			if (modulo == 0) AddRectangle(colliderIndex);
+			else if (modulo == 1) AddCircle(colliderIndex);
+			else AddLine(colliderIndex);
 		}
 
 		new Selector(this, Colliders[0]);
@@ -37,5 +40,18 @@ internal class CollisionScene : Scene
 		float y = Generate.Integer(Engine.GameHeight);
 		circleCollider.Transform.WorldPosition = new(x, y);
 		Colliders[colliderIndex] = circleCollider;
+	}
+
+	private void AddLine(int colliderIndex)
+	{
+		LineCollider lineCollider = new(this, 2.5f);
+		int x = Generate.Integer(MaximumSize, Engine.GameWidth - MaximumSize);
+		int y = Generate.Integer(MaximumSize, Engine.GameHeight - MaximumSize);
+		Vector2 position = new(x, y);
+		float halfLength = Generate.Float(MinimumSize, MaximumSize) / 2f;
+		Vector2 halfDirection = Generate.UnitVector2();
+		lineCollider.StartPosition = position + halfDirection * halfLength;
+		lineCollider.EndPosition = position + -halfDirection * halfLength;
+		Colliders[colliderIndex] = lineCollider;
 	}
 }

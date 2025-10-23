@@ -17,7 +17,7 @@ internal class Selector : Entity
 	public override void Update()
 	{
 		mousePosition = Mouse.GamePosition;
-		selectedCollider.CenterPosition = mousePosition + colliderOffset;
+		selectedCollider.Position = mousePosition + colliderOffset;
 		bool isColliding = selectedCollider.IsColliding(out ICollider otherCollider);
 		bool isMouseClicked = Mouse.IsButtonPressed(MouseButton.Left);
 		if (isColliding && isMouseClicked) GrabCollider(otherCollider);
@@ -28,6 +28,6 @@ internal class Selector : Entity
 		selectedCollider.IsSelected = false;
 		selectedCollider = otherCollider;
 		selectedCollider.IsSelected = true;
-		colliderOffset = selectedCollider.CenterPosition - mousePosition;
+		colliderOffset = selectedCollider.Position - mousePosition;
 	}
 }

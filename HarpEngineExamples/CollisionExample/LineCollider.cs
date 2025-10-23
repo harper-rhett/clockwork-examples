@@ -1,8 +1,9 @@
-﻿using HarpEngine.Graphics;
+﻿using HarpEngine;
+using HarpEngine.Graphics;
 using HarpEngine.Shapes;
 using System.Numerics;
 
-internal class RectangleCollider : RectangleShape, ICollider
+internal class LineCollider : LineShape, ICollider
 {
 	private CollisionScene collisionScene;
 	public bool IsSelected { get; set; }
@@ -10,11 +11,11 @@ internal class RectangleCollider : RectangleShape, ICollider
 
 	public Vector2 Position
 	{
-		get => Transform.WorldPosition;
-		set => Transform.WorldPosition = value;
+		get => StartPosition;
+		set => StartPosition = value;
 	}
 
-	public RectangleCollider(CollisionScene collisionScene, int width, int height) : base(collisionScene, width, height, Colors.Blue)
+	public LineCollider(CollisionScene collisionScene, float thickness) : base(collisionScene, thickness, Colors.Blue)
 	{
 		this.collisionScene = collisionScene;
 	}
@@ -25,14 +26,14 @@ internal class RectangleCollider : RectangleShape, ICollider
 		else Color = IsCollidedWith ? Colors.SkyBlue : Colors.Blue;
 	}
 
-	public bool IsColliding(out ICollider otherCollider)
+	bool ICollider.IsColliding(out ICollider otherCollider)
 	{
 		otherCollider = null;
 		bool isCollision = false;
 		foreach (ICollider collider in collisionScene.Colliders)
 		{
 			if (collider == this) continue;
-			bool doesCollide = collider.IntersectsWithRectangle(this);
+			bool doesCollide = collider.IntersectsWithLine(this);
 			collider.IsCollidedWith = doesCollide;
 			isCollision = isCollision || doesCollide;
 			if (doesCollide) otherCollider = collider;

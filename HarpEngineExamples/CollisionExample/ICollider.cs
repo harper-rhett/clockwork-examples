@@ -1,9 +1,9 @@
 ﻿using HarpEngine.Shapes;
 using System.Numerics;
 
-internal interface ICollider : ICollidesWithRectangle, ICollidesWithCircle
+internal interface ICollider : IIntersectsWithRectangle, IIntersectsWithCircle, IIntersectsWithLine
 {
-	public Vector2 CenterPosition { get; set; }
+	public Vector2 Position { get; set; }
 	public bool IsSelected { set; }
 	public bool IsCollidedWith { get; set; }
 
