@@ -36,8 +36,8 @@ internal class CollisionScene : Scene
 	{
 		float radius = Generate.Float(MinimumSize / 2f, MaximumSize / 2f);
 		CircleCollider circleCollider = new(this, radius);
-		float x = Generate.Integer(Engine.GameWidth);
-		float y = Generate.Integer(Engine.GameHeight);
+		float x = Generate.Float(radius, Engine.GameWidth - radius);
+		float y = Generate.Float(radius, Engine.GameHeight - radius);
 		circleCollider.Transform.WorldPosition = new(x, y);
 		Colliders[colliderIndex] = circleCollider;
 	}
@@ -48,7 +48,7 @@ internal class CollisionScene : Scene
 		int x = Generate.Integer(MaximumSize, Engine.GameWidth - MaximumSize);
 		int y = Generate.Integer(MaximumSize, Engine.GameHeight - MaximumSize);
 		Vector2 position = new(x, y);
-		float halfLength = Generate.Float(MinimumSize, MaximumSize) / 2f;
+		float halfLength = Generate.Float(MinimumSize, MaximumSize);
 		Vector2 halfDirection = Generate.UnitVector2();
 		lineCollider.StartPosition = position + halfDirection * halfLength;
 		lineCollider.EndPosition = position + -halfDirection * halfLength;
