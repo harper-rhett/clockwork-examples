@@ -9,10 +9,23 @@ internal class LineCollider : LineShape, ICollider
 	public bool IsSelected { get; set; }
 	public bool IsCollidedWith { get; set; }
 
+	private Vector2 endOffset;
 	public Vector2 Position
 	{
 		get => StartPosition;
-		set => StartPosition = value;
+		set
+		{
+			StartPosition = value;
+			base.EndPosition = StartPosition + endOffset;
+		}
+	}
+	public new Vector2 EndPosition
+	{
+		set
+		{
+			base.EndPosition = value;
+			endOffset = base.EndPosition - StartPosition;
+		}
 	}
 
 	public LineCollider(CollisionScene collisionScene, float thickness) : base(collisionScene, thickness, Colors.Blue)
