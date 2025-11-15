@@ -14,11 +14,11 @@ internal class PolygonExample : Game
 	{
 		Window.SetResizable(true);
 		Window.SetRendererUnclipped(Colors.DarkGray);
-		scene.Camera = new Camera2D(scene);
+		scene.Camera = new Camera2D();
 
-		new CustomPolygon(scene, 3, Colors.Green);
-		new CustomPolygon(scene, 4, Colors.Blue);
-		new CustomPolygon(scene, 5, Colors.Red);
+		scene.Add(new CustomPolygon(3, Colors.Green));
+		scene.Add(new CustomPolygon(4, Colors.Blue));
+		scene.Add(new CustomPolygon(5, Colors.Red));
 	}
 
 	public override void Update()
@@ -46,14 +46,14 @@ internal class CustomPolygon : PolygonShape
 	// Particles
 	ParticleEngine2D particleEngine;
 
-	public CustomPolygon(Scene scene, int sideCount, Color color) : base(scene, radius, sideCount, color)
+	public CustomPolygon(int sideCount, Color color) : base(radius, sideCount, color)
 	{
 		// Self
 		index = count;
 		count++;
 
 		// Particles
-		particleEngine = new(scene);
+		particleEngine = new();
 		particleEngine.DrawLayer = -1;
 		particleEngine.IsStreaming = true;
 		particleEngine.StreamCooldownTime = 0.01f;
@@ -66,13 +66,18 @@ internal class CustomPolygon : PolygonShape
 		particleEngine.AddModifier(ParticleModifiers.ApplyMovement());
 	}
 
+	public override void OnAddedToScene()
+	{
+		Scene.Add(particleEngine);
+	}
+
 	public override void Update()
 	{
 		// Movement
 		float rotationOffset = ((float)index / count) * MathF.Tau;
-		float x = MathF.Cos(scene.Time + rotationOffset) * 64;
-		float y = MathF.Sin(scene.Time + rotationOffset) * 64;
-		Transform.WorldRotation = scene.Time * -100f;
+		float x = MathF.Cos(Scene.Time + rotationOffset) * 64;
+		float y = MathF.Sin(Scene.Time + rotationOffset) * 64;
+		Transform.WorldRotation = Scene.Time * -100f;
 		Transform.WorldPosition = new(x, y);
 	}
 
