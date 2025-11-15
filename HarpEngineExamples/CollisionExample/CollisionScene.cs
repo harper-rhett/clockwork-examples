@@ -18,7 +18,8 @@ internal class CollisionScene : Scene
 			else AddLine(colliderIndex);
 		}
 
-		new Selector(this, Colliders[0]);
+		Selector selector = new Selector(Colliders[0]);
+		Add(selector);
 	}
 
 	private void AddRectangle(int colliderIndex)
@@ -30,6 +31,7 @@ internal class CollisionScene : Scene
 		int y = Generate.Integer(0, Engine.GameHeight - height);
 		rectangleCollider.Transform.WorldPosition = new(x, y);
 		Colliders[colliderIndex] = rectangleCollider;
+		Add(rectangleCollider);
 	}
 
 	private void AddCircle(int colliderIndex)
@@ -40,6 +42,7 @@ internal class CollisionScene : Scene
 		float y = Generate.Float(radius, Engine.GameHeight - radius);
 		circleCollider.Transform.WorldPosition = new(x, y);
 		Colliders[colliderIndex] = circleCollider;
+		Add(circleCollider);
 	}
 
 	private void AddLine(int colliderIndex)
@@ -53,5 +56,6 @@ internal class CollisionScene : Scene
 		lineCollider.StartPosition = position + halfDirection * halfLength;
 		lineCollider.EndPosition = position + -halfDirection * halfLength;
 		Colliders[colliderIndex] = lineCollider;
+		Add(lineCollider);
 	}
 }

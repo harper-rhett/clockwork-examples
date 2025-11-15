@@ -28,7 +28,7 @@ internal class LineCollider : LineShape, ICollider
 		}
 	}
 
-	public LineCollider(CollisionScene collisionScene, float thickness) : base(collisionScene, thickness, Colors.Blue)
+	public LineCollider(CollisionScene collisionScene, float thickness) : base(thickness, Colors.Blue)
 	{
 		this.collisionScene = collisionScene;
 	}

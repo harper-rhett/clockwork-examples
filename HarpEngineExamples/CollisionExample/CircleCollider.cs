@@ -14,7 +14,7 @@ internal class CircleCollider : CircleShape, ICollider
 		set => Transform.WorldPosition = value;
 	}
 
-	public CircleCollider(CollisionScene collisionScene, float radius) : base(collisionScene, radius, Colors.Blue)
+	public CircleCollider(CollisionScene collisionScene, float radius) : base(radius, Colors.Blue)
 	{
 		this.collisionScene = collisionScene;
 	}

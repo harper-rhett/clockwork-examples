@@ -8,7 +8,7 @@ internal class Selector : Entity
 	private Vector2 colliderOffset = Vector2.Zero;
 	private Vector2 mousePosition;
 
-	public Selector(Scene scene, ICollider selectedCollider) : base(scene)
+	public Selector(ICollider selectedCollider)
 	{
 		this.selectedCollider = selectedCollider;
 		selectedCollider.IsSelected = true;

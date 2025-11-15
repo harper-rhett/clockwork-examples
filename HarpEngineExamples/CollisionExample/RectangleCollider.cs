@@ -14,7 +14,7 @@ internal class RectangleCollider : RectangleShape, ICollider
 		set => Transform.WorldPosition = value;
 	}
 
-	public RectangleCollider(CollisionScene collisionScene, int width, int height) : base(collisionScene, width, height, Colors.Blue)
+	public RectangleCollider(CollisionScene collisionScene, int width, int height) : base(width, height, Colors.Blue)
 	{
 		this.collisionScene = collisionScene;
 	}
