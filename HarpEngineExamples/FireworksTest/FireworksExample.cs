@@ -15,8 +15,9 @@ internal class FireworksExample : Game
 		Window.SetResizable(true);
 		Window.SetRendererUnclipped(Colors.DarkGray);
 
-		FireworkLauncher fireworkLauncher = new(scene);
+		FireworkLauncher fireworkLauncher = new();
 		fireworkLauncher.Start();
+		scene.Add(fireworkLauncher);
 	}
 
 	public override void Update()
@@ -39,9 +40,9 @@ internal class FireworkLauncher : FireTimer
 	private const float launchForce = -150;
 	private const float fireworkRadius = 1;
 
-	public FireworkLauncher(Scene scene) : base(scene, reloadTime)
+	public FireworkLauncher() : base(reloadTime)
 	{
-		explosions = new(scene);
+		explosions = new();
 		explosions.RenderAsCircle(1);
 		explosions.AddInitializer(ParticleInitializers.SetColors(Colors.SkyBlue, Colors.White.DropAlpha()));
 		explosions.AddInitializer(ParticleInitializers.RandomizeLifespan(1, 2));
@@ -50,7 +51,7 @@ internal class FireworkLauncher : FireTimer
 		explosions.AddModifier(ParticleModifiers.AddVelocity(Vector2.UnitY * gravity));
 		explosions.AddModifier(ParticleModifiers.ApplyMovement());
 
-		fireworks = new(scene);
+		fireworks = new();
 		fireworks.RenderAsCircle(fireworkRadius);
 		fireworks.AddInitializer(ParticleInitializers.SetColors(Colors.Red, Colors.White));
 		fireworks.AddInitializer(ParticleInitializers.ConicDirection(Vector2.UnitY, 15));
@@ -59,6 +60,12 @@ internal class FireworkLauncher : FireTimer
 		fireworks.AddModifier(ParticleModifiers.AddVelocity(Vector2.UnitY * gravity));
 		fireworks.AddModifier(ParticleModifiers.ApplyMovement());
 		fireworks.AddFinalizer(ParticleFinalizers.CreateBurst(explosions, 50));
+	}
+
+	public override void OnAddedToScene()
+	{
+		Scene.Add(explosions);
+		Scene.Add(fireworks);
 	}
 
 	protected override void OnFired()
