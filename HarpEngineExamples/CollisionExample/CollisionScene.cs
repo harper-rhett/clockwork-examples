@@ -18,36 +18,33 @@ internal class CollisionScene : Scene
 			else AddLine(colliderIndex);
 		}
 
-		Selector selector = new Selector(Colliders[0]);
-		Add(selector);
+		Selector selector = AddEntity(new Selector(Colliders[0]));
 	}
 
 	private void AddRectangle(int colliderIndex)
 	{
 		int width = Generate.Integer(MinimumSize, MaximumSize);
 		int height = Generate.Integer(MinimumSize, MaximumSize);
-		RectangleCollider rectangleCollider = new(this, width, height);
+		RectangleCollider rectangleCollider = AddEntity(new RectangleCollider(this, width, height));
 		int x = Generate.Integer(0, Engine.GameWidth - width);
 		int y = Generate.Integer(0, Engine.GameHeight - height);
 		rectangleCollider.Transform.WorldPosition = new(x, y);
 		Colliders[colliderIndex] = rectangleCollider;
-		Add(rectangleCollider);
 	}
 
 	private void AddCircle(int colliderIndex)
 	{
 		float radius = Generate.Float(MinimumSize / 2f, MaximumSize / 2f);
-		CircleCollider circleCollider = new(this, radius);
+		CircleCollider circleCollider = AddEntity(new CircleCollider(this, radius));
 		float x = Generate.Float(radius, Engine.GameWidth - radius);
 		float y = Generate.Float(radius, Engine.GameHeight - radius);
 		circleCollider.Transform.WorldPosition = new(x, y);
 		Colliders[colliderIndex] = circleCollider;
-		Add(circleCollider);
 	}
 
 	private void AddLine(int colliderIndex)
 	{
-		LineCollider lineCollider = new(this, 2.5f);
+		LineCollider lineCollider = AddEntity(new LineCollider(this, 2.5f));
 		int x = Generate.Integer(MaximumSize, Engine.GameWidth - MaximumSize);
 		int y = Generate.Integer(MaximumSize, Engine.GameHeight - MaximumSize);
 		Vector2 position = new(x, y);
@@ -56,6 +53,5 @@ internal class CollisionScene : Scene
 		lineCollider.StartPosition = position + halfDirection * halfLength;
 		lineCollider.EndPosition = position + -halfDirection * halfLength;
 		Colliders[colliderIndex] = lineCollider;
-		Add(lineCollider);
 	}
 }

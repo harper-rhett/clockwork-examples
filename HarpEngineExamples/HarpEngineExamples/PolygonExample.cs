@@ -16,9 +16,9 @@ internal class PolygonExample : Game
 		Window.SetRendererUnclipped(Colors.DarkGray);
 		scene.Camera = new Camera2D();
 
-		scene.Add(new CustomPolygon(3, Colors.Green));
-		scene.Add(new CustomPolygon(4, Colors.Blue));
-		scene.Add(new CustomPolygon(5, Colors.Red));
+		scene.AddEntity(new CustomPolygon(3, Colors.Green));
+		scene.AddEntity(new CustomPolygon(4, Colors.Blue));
+		scene.AddEntity(new CustomPolygon(5, Colors.Red));
 	}
 
 	public override void Update()
@@ -68,10 +68,10 @@ internal class CustomPolygon : PolygonShape
 
 	public override void OnAddedToScene()
 	{
-		Scene.Add(particleEngine);
+		Scene.AddEntity(particleEngine);
 	}
 
-	public override void Update()
+	public override void OnUpdate()
 	{
 		// Movement
 		float rotationOffset = ((float)index / count) * MathF.Tau;

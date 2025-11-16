@@ -17,7 +17,7 @@ internal class FireworksExample : Game
 
 		FireworkLauncher fireworkLauncher = new();
 		fireworkLauncher.Start();
-		scene.Add(fireworkLauncher);
+		scene.AddEntity(fireworkLauncher);
 	}
 
 	public override void Update()
@@ -64,8 +64,8 @@ internal class FireworkLauncher : FireTimer
 
 	public override void OnAddedToScene()
 	{
-		Scene.Add(explosions);
-		Scene.Add(fireworks);
+		Scene.AddEntity(explosions);
+		Scene.AddEntity(fireworks);
 	}
 
 	protected override void OnFired()

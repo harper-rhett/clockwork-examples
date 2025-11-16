@@ -12,21 +12,17 @@ internal class OrbitsExample : Game
 	{
 		Window.SetResizable(true);
 		Window.SetRendererUnclipped(Colors.DarkGray);
-		scene.Camera = new Camera2D();
-		scene.Add(scene.Camera);
+		scene.Camera = scene.AddEntity(new Camera2D());
 
-		CelestialBody sun = new(75, Colors.Orange);
-		scene.Add(sun);
+		CelestialBody sun = scene.AddEntity(new CelestialBody(75, Colors.Orange));
 
-		CelestialBody earth = new(25, Colors.SkyBlue);
+		CelestialBody earth = scene.AddEntity(new CelestialBody(25, Colors.SkyBlue));
 		earth.Transform.Parent = sun.Transform;
 		earth.Transform.LocalPosition = Vector2.UnitX * 250;
-		scene.Add(earth);
 
-		CelestialBody moon = new(10, Colors.Gray);
+		CelestialBody moon = scene.AddEntity(new CelestialBody(10, Colors.Gray));
 		moon.Transform.Parent = earth.Transform;
 		moon.Transform.LocalPosition = Vector2.UnitX * 100;
-		scene.Add(moon);
 	}
 
 	public override void Update()
@@ -50,14 +46,14 @@ internal class CelestialBody : PolygonShape
 		textOffset = new(Radius, -Radius);
 	}
 
-	public override void Update()
+	public override void OnUpdate()
 	{
 		Transform.LocalRotation += 10 * Engine.FrameTime;
 	}
 
-	public override void Draw()
+	public override void OnDraw()
 	{
 		Text.Draw(Transform.WorldPosition.ToString("F0"), Transform.WorldPosition + textOffset, fontSize, Colors.White);
-		base.Draw();
+		base.OnDraw();
 	}
 }

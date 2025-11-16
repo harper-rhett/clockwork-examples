@@ -14,7 +14,7 @@ internal class Selector : Entity
 		selectedCollider.IsSelected = true;
 	}
 
-	public override void Update()
+	public override void OnUpdate()
 	{
 		mousePosition = Mouse.GamePosition;
 		selectedCollider.Position = mousePosition + colliderOffset;

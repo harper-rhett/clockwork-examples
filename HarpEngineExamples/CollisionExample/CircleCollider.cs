@@ -19,7 +19,7 @@ internal class CircleCollider : CircleShape, ICollider
 		this.collisionScene = collisionScene;
 	}
 
-	public override void Update()
+	public override void OnUpdate()
 	{
 		if (IsSelected) Color = IsSelected ? Colors.Green : Colors.Blue;
 		else Color = IsCollidedWith ? Colors.SkyBlue : Colors.Blue;
