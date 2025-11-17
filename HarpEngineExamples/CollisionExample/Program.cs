@@ -1,11 +1,5 @@
 ﻿using HarpEngine;
 
-EngineSettings settings = new()
-{
-	WindowName = "Collision Example",
-	GameWidth = 500,
-	GameHeight = 500
-};
-Engine.Initialize(settings);
+Engine.Initialize("Collision Example", 500, 500);
 CollisionExample collisionExample = new();
 Engine.Start(collisionExample);

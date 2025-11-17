@@ -1,9 +1,5 @@
 ﻿using HarpEngine;
 
-EngineSettings settings = new()
-{
-	WindowName = "Polygon Example"
-};
-Engine.Initialize(settings);
+Engine.Initialize("Polygon Example", 256, 256);
 PolygonExample polygonExample = new();
 Engine.Start(polygonExample);

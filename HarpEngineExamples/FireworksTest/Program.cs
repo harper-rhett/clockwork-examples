@@ -1,9 +1,5 @@
 ﻿using HarpEngine;
 
-EngineSettings settings = new()
-{
-	WindowName = "Fireworks Example"
-};
-Engine.Initialize(settings);
+Engine.Initialize("Fireworks Example", 256, 256);
 FireworksExample fireworksExample = new();
 Engine.Start(fireworksExample);

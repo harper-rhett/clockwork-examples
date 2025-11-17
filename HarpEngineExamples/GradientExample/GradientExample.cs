@@ -19,7 +19,6 @@ internal class GradientExample : Game
 			float position = (float)x / Engine.GameWidth;
 			Color color = gradient.Sample(position);
 			gradientOutput[x] = color;
-			Console.WriteLine($"X: {x} Pos: {position} Col: {color}");
 		}
 	}
 
