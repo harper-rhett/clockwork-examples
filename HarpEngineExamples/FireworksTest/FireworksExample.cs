@@ -20,12 +20,12 @@ internal class FireworksExample : Game
 		scene.AddEntity(fireworkLauncher);
 	}
 
-	public override void Update()
+	public override void OnUpdate()
 	{
 		scene.Update();
 	}
 
-	public override void Draw()
+	public override void OnDraw()
 	{
 		scene.Draw();
 	}

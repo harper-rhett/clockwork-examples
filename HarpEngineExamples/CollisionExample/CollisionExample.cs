@@ -15,12 +15,12 @@ internal class CollisionExample : Game
 		Window.SetResizable(true);
 	}
 
-	public override void Update()
+	public override void OnUpdate()
 	{
 		collisionScene.Update();
 	}
 
-	public override void Draw()
+	public override void OnDraw()
 	{
 		collisionScene.Draw();
 	}

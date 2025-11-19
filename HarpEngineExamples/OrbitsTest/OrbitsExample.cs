@@ -25,12 +25,12 @@ internal class OrbitsExample : Game
 		moon.Transform.LocalPosition = Vector2.UnitX * 100;
 	}
 
-	public override void Update()
+	public override void OnUpdate()
 	{
 		scene.Update();
 	}
 
-	public override void Draw()
+	public override void OnDraw()
 	{
 		scene.Draw();
 	}

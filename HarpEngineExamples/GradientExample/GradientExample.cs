@@ -22,12 +22,12 @@ internal class GradientExample : Game
 		}
 	}
 
-	public override void Update()
+	public override void OnUpdate()
 	{
 		
 	}
 
-	public override void Draw()
+	public override void OnDraw()
 	{
 		for (int x = 0; x < Engine.GameWidth; x++)
 		{

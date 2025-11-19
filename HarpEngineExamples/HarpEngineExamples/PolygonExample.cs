@@ -21,14 +21,14 @@ internal class PolygonExample : Game
 		scene.AddEntity(new CustomPolygon(5, Colors.Red));
 	}
 
-	public override void Update()
+	public override void OnUpdate()
 	{
 		if (Keyboard.IsKeyPressed(KeyboardKey.Space)) scene.IsPaused = !scene.IsPaused;
 
 		scene.Update();
 	}
 
-	public override void Draw()
+	public override void OnDraw()
 	{
 		scene.Draw();
 	}
