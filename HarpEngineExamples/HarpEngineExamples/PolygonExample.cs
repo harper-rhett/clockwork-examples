@@ -14,27 +14,27 @@ internal class PolygonExample : Game
 	{
 		Window.SetResizable(true);
 		Window.SetRendererUnclipped(Colors.DarkGray);
-		new Camera2D(scene);
+		scene.Camera = new Camera2D();
 
-		new CustomPolygon(scene, 3, Colors.Green);
-		new CustomPolygon(scene, 4, Colors.Blue);
-		new CustomPolygon(scene, 5, Colors.Red);
+		scene.AddEntity(new CustomPolygon(3, Colors.Green));
+		scene.AddEntity(new CustomPolygon(4, Colors.Blue));
+		scene.AddEntity(new CustomPolygon(5, Colors.Red));
 	}
 
-	public override void Update(float frameTime)
+	public override void OnUpdate()
 	{
 		if (Keyboard.IsKeyPressed(KeyboardKey.Space)) scene.IsPaused = !scene.IsPaused;
 
-		scene.Update(frameTime);
+		scene.Update();
 	}
 
-	public override void Draw()
+	public override void OnDraw()
 	{
 		scene.Draw();
 	}
 }
 
-internal class CustomPolygon : Polygon
+internal class CustomPolygon : PolygonShape
 {
 	// General
 	private int index;
@@ -46,33 +46,38 @@ internal class CustomPolygon : Polygon
 	// Particles
 	ParticleEngine2D particleEngine;
 
-	public CustomPolygon(Scene scene, int sideCount, Color color) : base(scene, radius, sideCount, color)
+	public CustomPolygon(int sideCount, Color color) : base(radius, sideCount, color)
 	{
 		// Self
 		index = count;
 		count++;
 
 		// Particles
-		particleEngine = new(scene);
+		particleEngine = new();
 		particleEngine.DrawLayer = -1;
 		particleEngine.IsStreaming = true;
 		particleEngine.StreamCooldownTime = 0.01f;
 		particleEngine.StreamFired += StreamParticle;
 		particleEngine.RenderAsPixel();
+		particleEngine.AddInitializer(ParticleInitializers.SetColors(Color, Color.DropAlpha()));
 		particleEngine.AddInitializer(ParticleInitializers.RandomizeDirection());
 		particleEngine.AddInitializer(ParticleInitializers.ScatterByDirection(radius / 2f));
 		particleEngine.AddInitializer(ParticleInitializers.SetSpeed(15));
 		particleEngine.AddModifier(ParticleModifiers.ApplyMovement());
-		particleEngine.AddModifier(ParticleModifiers.AdjustColor(color, color.DropAlpha(), Curves.Linear));
 	}
 
-	public override void Update(float frameTime)
+	public override void OnAddedToScene()
+	{
+		Scene.AddEntity(particleEngine);
+	}
+
+	public override void OnUpdate()
 	{
 		// Movement
 		float rotationOffset = ((float)index / count) * MathF.Tau;
-		float x = MathF.Cos(scene.Time + rotationOffset) * 64;
-		float y = MathF.Sin(scene.Time + rotationOffset) * 64;
-		Transform.WorldRotation = scene.Time * -100f;
+		float x = MathF.Cos(Scene.Time + rotationOffset) * 64;
+		float y = MathF.Sin(Scene.Time + rotationOffset) * 64;
+		Transform.WorldRotation = Scene.Time * -100f;
 		Transform.WorldPosition = new(x, y);
 	}
 
@@ -81,7 +86,6 @@ internal class CustomPolygon : Polygon
 		particleTemplate = new()
 		{
 			Position = Transform.WorldPosition,
-			Color = Color,
 			Lifespan = 1
 		};
 	}

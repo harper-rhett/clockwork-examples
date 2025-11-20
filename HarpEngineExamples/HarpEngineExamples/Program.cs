@@ -1,5 +1,4 @@
 ﻿using HarpEngine;
 
-Engine.Initialize(new());
-PolygonExample polygonTest = new();
-Engine.Start(polygonTest);
+Engine.Initialize("Polygon Example", 256, 256);
+Engine.Start(new PolygonExample());
