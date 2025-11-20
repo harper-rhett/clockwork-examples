@@ -7,14 +7,14 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
-	<!--
 	<ItemGroup>
-		<PackageReference Include="HarpEngine" Version="0.1.2" />
+		<PackageReference Include="HarpEngine" Version="0.2.0" />
 	</ItemGroup>
-	-->	
 
+	<!--
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\harp-engine\HarpEngine\HarpEngine.csproj" />
 	</ItemGroup>
+	-->
 
 </Project>
