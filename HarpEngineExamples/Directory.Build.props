@@ -1,0 +1,6 @@
+<Project>
+	<PropertyGroup>
+		<UseLocalEngine>true</UseLocalEngine>
+		<LocalEnginePath>..\..\..\harp-engine\HarpEngine\HarpEngine.csproj</LocalEnginePath>
+	</PropertyGroup>
+</Project>

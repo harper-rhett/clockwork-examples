@@ -7,14 +7,12 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition="'$(UseLocalEngine)' == 'false'">
 		<PackageReference Include="HarpEngine" Version="0.2.0" />
 	</ItemGroup>
 
-	<!--
-	<ItemGroup>
-		<ProjectReference Include="..\..\..\harp-engine\HarpEngine\HarpEngine.csproj" />
+	<ItemGroup Condition="'$(UseLocalEngine)' == 'true'">
+		<ProjectReference Include="$(LocalEnginePath)" />
 	</ItemGroup>
-	-->
 
 </Project>
