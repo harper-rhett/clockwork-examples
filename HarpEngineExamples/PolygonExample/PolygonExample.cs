@@ -19,8 +19,6 @@ internal class PolygonExample : Game
 		scene.AddEntity(new CustomPolygon(3, Colors.Green));
 		scene.AddEntity(new CustomPolygon(4, Colors.Blue));
 		scene.AddEntity(new CustomPolygon(5, Colors.Red));
-
-		Engine.TakeBurst("burst", 3);
 	}
 
 	public override void OnUpdate()
