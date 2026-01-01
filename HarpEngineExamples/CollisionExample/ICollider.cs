@@ -1,4 +1,4 @@
-﻿using HarpEngine.Shapes;
+﻿using Clockwork.Shapes;
 using System.Numerics;
 
 internal interface ICollider : IIntersectsWithRectangle, IIntersectsWithCircle, IIntersectsWithLine

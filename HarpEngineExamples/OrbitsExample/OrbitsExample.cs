@@ -1,7 +1,7 @@
-﻿using HarpEngine;
-using HarpEngine.Windowing;
-using HarpEngine.Graphics;
-using HarpEngine.Shapes;
+﻿using Clockwork;
+using Clockwork.Windowing;
+using Clockwork.Graphics;
+using Clockwork.Shapes;
 using System.Numerics;
 
 internal class OrbitsExample : Game

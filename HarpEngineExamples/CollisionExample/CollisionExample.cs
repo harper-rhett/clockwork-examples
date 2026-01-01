@@ -1,9 +1,9 @@
-﻿using HarpEngine;
-using HarpEngine.Graphics;
-using HarpEngine.Input;
-using HarpEngine.Shapes;
-using HarpEngine.Utilities;
-using HarpEngine.Windowing;
+﻿using Clockwork;
+using Clockwork.Graphics;
+using Clockwork.Input;
+using Clockwork.Shapes;
+using Clockwork.Utilities;
+using Clockwork.Windowing;
 
 internal class CollisionExample : Game
 {

@@ -1,5 +1,5 @@
-﻿using HarpEngine.Graphics;
-using HarpEngine.Shapes;
+﻿using Clockwork.Graphics;
+using Clockwork.Shapes;
 using System.Numerics;
 
 internal class RectangleCollider : RectangleShape, ICollider

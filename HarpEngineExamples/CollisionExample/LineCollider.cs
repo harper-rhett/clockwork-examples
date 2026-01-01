@@ -1,6 +1,6 @@
-﻿using HarpEngine;
-using HarpEngine.Graphics;
-using HarpEngine.Shapes;
+﻿using Clockwork;
+using Clockwork.Graphics;
+using Clockwork.Shapes;
 using System.Numerics;
 
 internal class LineCollider : LineShape, ICollider

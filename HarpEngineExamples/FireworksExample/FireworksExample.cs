@@ -1,10 +1,10 @@
-﻿using HarpEngine;
-using HarpEngine.Windowing;
-using HarpEngine.Graphics;
-using HarpEngine.Particles;
-using HarpEngine.Utilities;
+﻿using Clockwork;
+using Clockwork.Windowing;
+using Clockwork.Graphics;
+using Clockwork.Particles;
+using Clockwork.Utilities;
 using System.Numerics;
-using HarpEngine.Animation;
+using Clockwork.Animation;
 
 internal class FireworksExample : Game
 {

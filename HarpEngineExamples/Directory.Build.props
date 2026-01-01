@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
 		<UseLocalEngine>true</UseLocalEngine>
-		<LocalEnginePath>..\..\..\harp-engine\HarpEngine\HarpEngine.csproj</LocalEnginePath>
+		<LocalEnginePath>..\..\..\clockwork-engine\ClockworkEngine\ClockworkEngine.csproj</LocalEnginePath>
 	</PropertyGroup>
 </Project>

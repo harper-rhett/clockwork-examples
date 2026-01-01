@@ -1,10 +1,10 @@
-﻿using HarpEngine;
-using HarpEngine.Windowing;
-using HarpEngine.Graphics;
-using HarpEngine.Input;
-using HarpEngine.Shapes;
-using HarpEngine.Particles;
-using HarpEngine.Animation;
+﻿using Clockwork;
+using Clockwork.Windowing;
+using Clockwork.Graphics;
+using Clockwork.Input;
+using Clockwork.Shapes;
+using Clockwork.Particles;
+using Clockwork.Animation;
 
 internal class PolygonExample : Game
 {
