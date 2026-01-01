@@ -1,0 +1,14 @@
+<Project>
+	<PropertyGroup>
+		<UseLocalEngine>false</UseLocalEngine>
+		<LocalEnginePath>..\..\..\clockwork-engine\ClockworkEngine\ClockworkEngine.csproj</LocalEnginePath>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(UseLocalEngine)' == 'false'">
+		<PackageReference Include="ClockworkEngine" Version="0.2.5" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(UseLocalEngine)' == 'true'">
+		<ProjectReference Include="$(LocalEnginePath)" />
+	</ItemGroup>
+</Project>
