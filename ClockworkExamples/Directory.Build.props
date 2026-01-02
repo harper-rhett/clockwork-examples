@@ -5,7 +5,7 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(UseLocalEngine)' == 'false'">
-		<PackageReference Include="ClockworkEngine" Version="0.2.5" />
+		<PackageReference Include="ClockworkEngine" Version="*" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(UseLocalEngine)' == 'true'">
